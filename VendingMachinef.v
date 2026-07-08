@@ -1,21 +1,21 @@
 module VendingMachinef(
- input clk,                 // Clock signal (synchronous operation)
- input rst,                 // Reset signal (active high)
+ input clk,                 
+ input rst,                 
 
  input [1:0] in,            // Coin input
 
- output reg [1:0] out,      // Product control signal:Decides what to dispense normal item or special item
+ output reg [1:0] out,      //Decides what to dispense normal item or special item
                             // 00 = no item
                             // 01 = normal item (e.g., water bottle)
                             // 10 = special item
 
- output reg [1:0] change,   // Change return signal:For returning money back
+ output reg [1:0] change,   // For returning money back
                             // 00 = no change
                             // 01 = return ₹5
                             // 10 = return ₹10
                             // 11 = return invalid coin
 
- output reg [2:0] state_led // Status indication (one-hot LEDs):
+ output reg [2:0] state_led // Status indication:
                             // 001 = idle
                             // 010 = processing
                             // 100 = error
@@ -25,13 +25,12 @@ parameter s0 = 2'b00;       // ₹0 inserted (Idle)
 parameter s1 = 2'b01;       // ₹5 inserted
 parameter s2 = 2'b10;       // ₹10 inserted
 
-reg [1:0] c_state;          // Current state register
+reg [1:0] c_state;          // Current state 
 
 always @(posedge clk)
 begin
     if(rst)
     begin
-        // Reset machine to initial state
         c_state   <= s0;
         out       <= 2'b00;  // No item
         change    <= 2'b00;  // No change
@@ -41,8 +40,7 @@ begin
     begin
         case(c_state)
 
-        // ================= STATE S0 =================
-        s0:
+        s0: //state 0 : 0 rs
         begin
             if(in == 2'b00) // No coin
             begin
@@ -76,9 +74,8 @@ begin
                 state_led <= 3'b100; // Error
             end
         end
-
-        // ================= STATE S1 =================
-        s1:
+         
+        s1:  //state 1 : 5 rs
         begin
             if(in == 2'b00) // Cancel
             begin
@@ -113,8 +110,7 @@ begin
             end
         end
 
-        // ================= STATE S2 =================
-        s2:
+        s2: //state 2 : 10 rs
         begin
             if(in == 2'b00) // Cancel
             begin
