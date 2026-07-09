@@ -78,3 +78,6 @@ The vending machine starts in the Idle state (₹0).
 
 ---
 
+## Working
+<img width="1548" height="240" alt="image" src="https://github.com/user-attachments/assets/4022e900-8a8f-4b21-9624-9707ba80e11c" />
+
