@@ -22,3 +22,59 @@ This project implements an FSM-based virtual vending machine controller using Ve
 | S2 | ₹10 inserted |
 
 ---
+
+## Input Description
+
+| Input | Description |
+|-------|-------------|
+| clk | System clock |
+| rst | Active-high synchronous reset |
+| in = 00 | No coin / Cancel |
+| in = 01 | ₹5 coin |
+| in = 10 | ₹10 coin |
+| in = 11 | Invalid coin |
+
+---
+
+## Output Description
+
+### Product Output (`out`)
+
+| Value | Description |
+|-------|-------------|
+| 00 | No product |
+| 01 | Dispense Normal Item |
+| 10 | Dispense Special Item |
+
+### Change Output (`change`)
+
+| Value | Description |
+|-------|-------------|
+| 00 | No change |
+| 01 | Return ₹5 |
+| 10 | Return ₹10 |
+| 11 | Return invalid coin |
+
+### Status LED (`state_led`)
+
+| Value | Description |
+|-------|-------------|
+| 001 | Idle |
+| 010 | Processing |
+| 100 | Error |
+
+---
+
+## Working
+
+The vending machine starts in the Idle state (₹0).
+
+- Inserting a ₹5 coin moves the controller to the ₹5 state.
+- Inserting a ₹10 coin moves it to the ₹10 state.
+- Appropriate products are dispensed once the required amount is reached.
+- Any excess money is returned as change.
+- Invalid coin inputs are detected and returned immediately.
+- A reset signal returns the controller to the idle state.
+
+---
+
