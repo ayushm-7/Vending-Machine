@@ -12,3 +12,13 @@ This project implements an FSM-based virtual vending machine controller using Ve
 - Includes reset functionality to initialize the controller
 
 ---
+
+## State Description
+
+| State | Description |
+|--------|-------------|
+| S0 | Idle (₹0 inserted) |
+| S1 | ₹5 inserted |
+| S2 | ₹10 inserted |
+
+---
