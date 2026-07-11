@@ -15,17 +15,14 @@ VendingMachinef uut(
 .change(change),
 .state_led(state_led)
 );
-initial clk = 0;           // Initialize clock
- always #5 clk = ~clk;      // Toggle every 5 time units (10 ns period)
+initial clk = 0;           
+always #5 clk = ~clk;     
 
- // ================= TEST SEQUENCE =================
- initial begin
+initial begin
 
-    // Initialize inputs
     rst = 1;
     in = 2'b00;
 
-    // Reset phase
     #20;
     rst = 0;
 
